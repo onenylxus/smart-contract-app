@@ -1,3 +1,7 @@
-<div (click)="onClick()">
-  <p id="text">Click to connect MetaMask</p>
+<div class="container">
+  <div (click)="onClick()">
+    <span>{{message}}</span>
+    <div id="transactions"></div>
+  </div>
+  <button id="logout" style="display: none" (click)="logout()">Logout</button>
 </div>

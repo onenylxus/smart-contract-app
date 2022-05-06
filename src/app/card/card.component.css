@@ -1,5 +1,12 @@
-div {
-  width: 20vw;
-  height: 10vh;
-  background: #d8d8d8;
+.container {
+  padding: 8px;
+  background: #ffedca;
+}
+
+span {
+  color: #d89000;
+}
+
+#transactions {
+  text-align: left;
 }

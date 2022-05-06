@@ -1,36 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import detectEthereumProvider from '@metamask/detect-provider';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WalletService {
-  public constructor(private http: HttpClient) {}
+  private ethereum: any;
 
-  public signOut(): void {
-
+  public constructor(private http: HttpClient) {
+    detectEthereumProvider().then((provider) => {
+      this.ethereum = provider;
+    });
   }
 
-  public signIn(): Observable<any> | undefined {
-    let ethereum: any;
+  public get isMetaMask(): boolean {
+    return !!window.ethereum;
+  }
 
-    return from(detectEthereumProvider()).pipe(
-      switchMap(async (provider) => {
-        if(!provider) {
-          throw new Error('Please install MetaMask');
-        }
-        ethereum = provider;
+  public async signOut(): Promise<any> {
+    return await this.ethereum.request({method:"eth_requestAccounts", params: [{eth_accounts: {}}]})
+  }
 
-        return await ethereum.request({ method: 'eth_requestAccounts' });
-      }),
+  public async signIn(): Promise<any> {
+    if (!this.isMetaMask) { return Promise.reject(); }
+    return await this.ethereum.request({ method: 'eth_requestAccounts' });
+  }
 
-      switchMap(() => {
-        const transaction = this.http.get(`https://api.etherscan.io/api?module=account&action=txlistinternal&address=${ethereum.selectedAddress}&startblock=0&endblock=2702578&page=1&offset=10&sort=asc&apikey=YourApiKeyToken`);
-        return transaction;
-      }),
-    );
+  public getTransactions(address: string): Observable<any> {
+    return this.http.get(`https://api-rinkeby.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=9MNQK7FGSEUV371Y7K8ZNFK2T7NC5T1UIF`);
   }
 }
