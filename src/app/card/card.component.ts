@@ -40,7 +40,7 @@ export class CardComponent {
         const hrow = document.createElement('tr');
         Object.keys(data[0]).forEach((key: any) => {
           const cell = document.createElement('th');
-          cell.appendChild(document.createTextNode(key));
+          cell.appendChild(document.createTextNode(`${key[0].toUpperCase()}${key.slice(1)}`));
           cell.setAttribute('style', 'border: 1px solid');
           hrow.appendChild(cell);
         });
@@ -53,7 +53,7 @@ export class CardComponent {
           Object.values(transaction).forEach((value: any) => {
             const cell = document.createElement('td');
             cell.appendChild(document.createTextNode(value));
-            cell.setAttribute('style', 'border: 1px solid');
+            cell.setAttribute('style', `border: 1px solid; font-size: 14px;${value === this.wallet ? 'color: #ff6666' : ''}`);
             row.appendChild(cell);
           });
           tableBody.appendChild(row);
