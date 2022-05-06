@@ -4,9 +4,8 @@
   height: calc(100vh - 16px);
 }
 
-.button {
+.center {
   margin: auto;
-  height: 1.25rem;
   justify-content: center;
   align-items: center;
 }
