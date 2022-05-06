@@ -77,9 +77,9 @@ export class CardComponent {
 
     const container = document.getElementById('transactions');
     if (container && container.hasChildNodes()) {
-        container.removeChild(container.firstChild!);
-        container.setAttribute('style', 'padding: 0');
-      }
+      container.removeChild(container.firstChild!);
+      container.setAttribute('style', 'padding: 0');
+    }
 
     document.getElementById('logout')?.setAttribute('style', `display: ${this.wallet.length > 0 ? 'inline' : 'none'}`);
   }
