@@ -16,7 +16,14 @@ export class ButtonComponent {
 
 	@Output() btnClick = new EventEmitter();
 
-  constructor(private contractService: ContractService) {}
+  constructor(private contractService: ContractService) {
+    if (!this.contractService.isMetaMask) {
+      console.log('MetaMask is not detected in this browser. Please install MetaMask to continue.');
+    } else {
+      console.log('MetaMask detected.');
+      this.contractService.requestAccounts().then((accounts) => console.log(accounts));
+    }
+  }
 
 	onClick() {
     console.log('Connecting...');
