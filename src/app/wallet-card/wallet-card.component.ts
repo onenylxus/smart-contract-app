@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { WalletService } from '../wallet/wallet.service';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-wallet-card',
+  templateUrl: './wallet-card.component.html',
+  styleUrls: ['./wallet-card.component.css']
 })
-export class CardComponent {
+export class WalletCardComponent {
   public message: string = '';
   private wallet: string = '';
 
@@ -30,7 +30,6 @@ export class CardComponent {
       const container = document.getElementById('transactions')!;
 
       this.walletService.getTransactions(this.wallet).subscribe((result) => {
-        console.log(result.result);
         const data = result.result.map((transaction: any) => ({ from: transaction.from, to: transaction.to, value: transaction.value }));
 
         const table = document.createElement('table');

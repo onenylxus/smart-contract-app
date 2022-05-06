@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CardComponent } from './card/card.component';
+import { WalletCardComponent } from './wallet-card/wallet-card.component';
+import { ContractCardComponent } from './contract-card/contract-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent
+    WalletCardComponent,
+    ContractCardComponent
   ],
   imports: [
     BrowserModule,

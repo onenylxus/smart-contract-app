@@ -1,0 +1,12 @@
+.container {
+    padding: 8px;
+    background: #ffedca;
+  }
+
+  span {
+    color: #d89000;
+  }
+
+  #transactions {
+    text-align: left;
+  }
