@@ -1,10 +1,13 @@
 {
   "name": "smart-contract-app",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "make": "node src/make",
+    "vercel": "yarn make && yarn build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -22,6 +25,7 @@
     "assert": "^2.0.0",
     "crypto-browserify": "^3.12.0",
     "https-browserify": "^1.0.0",
+    "node-fetch": "^3.2.4",
     "os-browserify": "^0.3.0",
     "rxjs": "~7.5.0",
     "stream-browserify": "^3.0.0",
