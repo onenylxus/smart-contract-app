@@ -47,9 +47,12 @@
  */
 
 import 'zone.js';  // Included with Angular CLI.
+
+/**
+ * Some extra polyfills added to handle error generated from code.
+ */
 (window as any).process = { env: { DEBUG: undefined }, nextTick: function() { return null; } };
 (window as any).global = window;
-// global.Buffer = global.Buffer || require('buffer').Buffer;
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
